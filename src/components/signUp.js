@@ -37,21 +37,36 @@ const Signup = () => {
   };
 
   const imageStyle = {
-    width: '400px', // Set the width of your image
-    height: 'auto', // Maintain aspect ratio
+    width: '400px', 
+    height: 'auto', 
   };
   const containerStyle = {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    gap: '50px',
+    padding: '20px',
     maxWidth: '800px',
-    margin: '0 auto',
-    minHeight: '100vh',
+    margin: '0 auto', 
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    backgroundColor: '#f8f8f8',
+  
+  
+    position: 'absolute', 
+    top: '50%',
+    left: '50%', 
+    transform: 'translate(-50%, -50%)', 
+  
+  
+    height: 'auto',
+    maxHeight: '100vh', 
+    overflowY: 'auto', 
   };
   return (
     <div style={containerStyle}>
       <div>
-        {/* Add your image source in the src attribute */}
+       
         <img src="/login.jpg" alt="6811265" style={imageStyle} />
       </div>
       <div style={formStyle}>

@@ -17,32 +17,28 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
-  
-
   return (
-    <NotificationProvider>
-    <Router>
-      <div>
-        {isLoggedIn && <Navbar />}
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/signup" element={<Signup />} />
-          
-          <Route path="/channels" element={<ChannelList />} />
-          <Route path="/channels/:channelName" element={<Channel />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/direct/:userName" element={<DirectMessages />} />
-          <Route path="/notifications" element={<NotificationsPage />} />
-
-        </Routes>
-
-        
-      </div>
-    </Router>
-    </NotificationProvider>
     
+    <NotificationProvider>
+      <Router>
+        <div style={{ display: 'flex', width: '100%', height:'100vh',flexDirection: 'column' }}>
+          <div>{isLoggedIn && <Navbar />}</div>
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="/login" element={<Login onLogin={handleLogin} />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/channels" element={<ChannelList />} />
+              <Route path="/channels/:channelName" element={<Channel />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/direct/:userName" element={<DirectMessages />} />
+              <Route path="/notifications" element={<NotificationsPage />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+    </NotificationProvider>
   );  
-
 };
+
 export default App;

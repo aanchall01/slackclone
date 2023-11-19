@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -22,6 +23,7 @@ const CreateChannel = ({ onAddChannel }) => {
           value={channelName}
           onChange={(e) => setChannelName(e.target.value)}
           style={styles.input}
+          aria-label="Channel Name"
         />
         <button type="submit" style={styles.button}>
           Create

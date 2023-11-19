@@ -21,13 +21,28 @@ const Login = ({ onLogin }) => {
   // Inline styles
   const containerStyle = {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // Centers content horizontally in the container
+    alignItems: 'center', // Centers content vertically in the container
+    gap: '50px',
+    padding: '20px',
     maxWidth: '800px',
-    margin: '0 auto',
-    minHeight: '100vh',
+    margin: '0 auto', // Centers the container horizontally in the viewport
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    backgroundColor: '#f8f8f8',
+  
+    // Additional styles for vertical centering
+    position: 'absolute', // Use absolute positioning
+    top: '50%', // Position the top edge of the container 50% down the viewport
+    left: '50%', // Position the left edge of the container 50% across the viewport
+    transform: 'translate(-50%, -50%)', // Offset the container to truly center it
+  
+    // Ensuring the content is always accessible
+    height: 'auto',
+    maxHeight: '100vh', // Maximum height to viewport height
+    overflowY: 'auto', // Scroll if content overflows
   };
-
+  
 
   const formStyle = {
     maxWidth: '300px',
@@ -51,14 +66,18 @@ const Login = ({ onLogin }) => {
   };
     
   const signupButtonStyle = {
-    //padding: '10px',
-    fontSize: '18px',
-    //backgroundColor: '#3498db', // Different color for sign-up button
-    color: 'black',
-    cursor: 'pointer',
-    width: '25%', // Set the width to 100% to make it full width
-   // boxSizing: 'border-box',
-    //marginTop: '5px', // Add margin to separate it from the login button
+    fontSize: '16px', // Adjusted font size
+    backgroundColor: 'transparent', // Clear background
+    color: '#3498db', // Blue color for emphasis
+    width: '100%', // Full width for better visibility
+    marginTop: '10px', // Added margin for separation
+    textDecoration: 'bold', // Underline to indicate it's clickable
+  };
+
+  const headerStyle = {
+    fontFamily: 'Arial, sans-serif', // Consistent font family
+    color: '#333', // Darker color for better readability
+    marginBottom: '20px', // Space before the form
   };
   const imageStyle = {
     width: '400px', // Set the width of your image
@@ -72,7 +91,7 @@ const Login = ({ onLogin }) => {
         <img src="/login.jpg" alt="6811265" style={imageStyle} />
       </div>
       <div style={formStyle}>
-        <h2 fontFamily = 'Arial' >Login</h2>
+      <h2 style={headerStyle}>Login</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"

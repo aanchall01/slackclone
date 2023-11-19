@@ -5,23 +5,25 @@ const MessageList = ({ messages }) => {
   return (
     <div style={styles.container}>
       <ul style={styles.messageList}>
-        {messages.map((message, index) => (
+        {messages.map((message, someindex) => (
           <li
-            key={index}
+            key={someindex}
             style={
-              message.sender === 'Current User'
+              message.sender === 'User'
                 ? styles.myMessageContainer
                 : styles.friendMessageContainer
             }
           >
             <div
               style={
-                message.sender === 'Current User'
+                message.sender === 'User'
                   ? styles.myMessageContent
                   : styles.friendMessageContent
               }
             >
-              {message.sender}: {message.content}
+              {/* Conditionally rendering the sender's name */}
+              {message.sender !== 'User' && <strong>{message.sender}: </strong>}
+              {message.content}
             </div>
           </li>
         ))}
@@ -51,6 +53,7 @@ const styles = {
     borderRadius: '10px',
     display: 'inline-block',
     maxWidth: '70%',
+    fontSize: '18px',  
   },
   myMessageContainer: {
     textAlign: 'right',
@@ -62,6 +65,7 @@ const styles = {
     borderRadius: '10px',
     display: 'inline-block',
     maxWidth: '70%',
+    fontSize: '18px', 
   },
 };
 
