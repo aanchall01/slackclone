@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from './Searchbar'; 
 
 const UserList = () => {
-  const users = ['Alice', 'Bob', 'Charlie']; // Sample user list
+  const [users] = useState(['Alice', 'Bob', 'Charlie']);
+  const [searchTerm, setSearchTerm] = useState('');
+
+
+  const filteredUsers = users.filter(user =>
+    user.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div style={styles.container}>
+      <SearchBar onSearch={setSearchTerm} />
       
       <ul style={styles.userList}>
-        {users.map((user, index) => (
+        {filteredUsers.map((user, index) => (
           <li key={index} style={styles.userItem}>
             <Link to={`/direct/${user}`} style={styles.userLink}>
-              <div style={styles.userAvatar}>{user.charAt(0)}</div> {/* Placeholder for user avatar */}
+              <div style={styles.userAvatar}>{user.charAt(0)}</div>
               <div style={styles.userInfo}>
                 <div style={styles.userName}>{user}</div>
-               
               </div>
               <div style={styles.timestamp}>12:30 PM</div>
             </Link>
@@ -24,7 +31,6 @@ const UserList = () => {
     </div>
   );
 };
-
 const styles = {
   container: {
     maxWidth: '1200px',

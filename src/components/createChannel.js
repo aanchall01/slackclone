@@ -39,15 +39,10 @@ CreateChannel.propTypes = {
 
 const styles = {
   container: {
-    //position: 'fixed',
-    //top:'100px',
-   // right:'10px',
     maxWidth: '400px',
     margin: 'auto',
     padding: '20px',
-    //backgroundColor: '#f4f4f4',
-    //border: '1px solid #ddd',
-    //borderRadius: '5px',
+   
   },
   heading: {
     fontSize: '24px',

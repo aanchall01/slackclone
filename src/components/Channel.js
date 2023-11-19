@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import MessageList from './messageList';
 import SendMessage from './sendMessage';
+import SearchBar from './Searchbar';
 
 // Sample data for testing
 const sampleMessages = {
@@ -17,11 +18,16 @@ const sampleMessages = {
 
 const Channel = () => {
   const [messages, setMessages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const { channelName } = useParams();
 
   useEffect(() => {
     setMessages(sampleMessages[channelName.toLowerCase()] || []);
   }, [channelName]);
+
+  const filteredMessages = messages.filter(message => 
+    message.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleSendMessage = (newMessageContent) => {
     setMessages([...messages, { sender: 'User', content: newMessageContent }]);
@@ -29,14 +35,18 @@ const Channel = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.header}>Channel: {channelName}</div>
+      <div style={styles.header}>
+        Channel: {channelName}
+        <div style={styles.searchBar}><SearchBar onSearch={setSearchTerm}  /></div>
+      </div>
       <div style={styles.chatBox}>
-        <MessageList messages={messages} />
+        <MessageList messages={filteredMessages} />
       </div>
       <SendMessage onSendMessage={handleSendMessage} />
     </div>
   );
 };
+
 
 const styles = {
   container: {
@@ -51,15 +61,22 @@ const styles = {
     borderBottom: '1px solid #ddd',
     backgroundColor: '#57aaa0',
     color: '#fff',
-    fontSize: '26px',  // Increased from '22px'
+    fontSize: '26px',  
     textAlign: 'left',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   chatBox: {
     flex: 1,
     overflowY: 'auto',
     padding: '15px',
   },
-  // Include styles for SendMessage if necessary
+  searchBar: {
+    width: '150px', 
+    marginRight: '15px', 
+  },
+ 
 };
 
 export default Channel;

@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
-import CreateChannel from './createChannel'; // Assuming the correct filename
+import CreateChannel from './createChannel';
+import SearchBar from './Searchbar'; 
 import { Link } from 'react-router-dom';
 
 const ChannelList = () => {
   const [channels, setChannels] = useState(['General', 'Random']);
+  const [searchTerm, setSearchTerm] = useState(''); 
 
   const addChannel = (channelName) => {
     setChannels((prevChannels) => [...prevChannels, channelName]);
   };
+
+
+  const filteredChannels = channels.filter(channel => 
+    channel.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Channels</h2>
+      <SearchBar onSearch={setSearchTerm} /> 
       <div style={styles.contentContainer}>
         <div style={styles.channelListContainer}>
           <ul style={styles.channelList}>
-            {channels.map((channel) => (
+            {filteredChannels.map((channel) => (
               <li key={channel} style={styles.channelItem}>
                 <Link to={`/channels/${channel.toLowerCase()}`} style={styles.channelLink}>
                   {channel}
@@ -30,6 +39,9 @@ const ChannelList = () => {
     </div>
   );
 };
+
+
+
 
 const styles = {
   container: {
