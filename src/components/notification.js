@@ -2,12 +2,6 @@ import React, { createContext, useState, useCallback } from 'react';
 
 export const NotificationContext = createContext();
 
-// Function to format date
-const formatDate = (date) => {
-  return date.toLocaleString();
-};
-
-// Initial notifications with detailed structure
 const initialNotifications = [
   { id: 1, message: "Welcome to the app!", timestamp: new Date() },
   { id: 2, message: "Remember to check out the latest updates.", timestamp: new Date() },
